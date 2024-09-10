@@ -5,4 +5,4 @@ while a>=b:
         print(a)
         a-=1
     else:
-        pass
+        a-=1
