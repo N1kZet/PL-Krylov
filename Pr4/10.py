@@ -8,10 +8,11 @@ k = int(input('С какого элемента начинать: '))
 a = 0
 res= 1
 for i in range(k,k+n):
-    while a < i:
+    while a<i:
         fib_sum = fib1 + fib2
         fib1 = fib2
         fib2 = fib_sum
         a += 1
         res+=fib_sum
+
 print(res)
