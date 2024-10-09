@@ -1,5 +1,5 @@
-a = int(input('Введите число: '))
-b = int(input('Введите число: '))
+a = int(input('Введите число a: '))
+b = int(input('Введите число b: '))
 if a<b:
     while a<=b:
         print(a)

@@ -6,7 +6,6 @@ arr[max], arr[min] = arr[min], arr[max]
 print(arr)
 #2
 numbers = []
-
 for i in range(10):
   number = int(input(f"Введите число {i + 1}: "))
   numbers.append(number)
