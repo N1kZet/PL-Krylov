@@ -1,6 +1,4 @@
 #1
-import random
-
 arr = [int(x) for x in (input('Введите числа массива: ')).split()]
 max = -float('inf')
 for i in arr:
