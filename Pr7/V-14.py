@@ -31,4 +31,3 @@ max_numbers = find_numbers_with_max_divisors(M, N)
 print(f"Числа из интервала [{M}, {N}] с наибольшим количеством делителей:")
 for num in max_numbers:
  print(num)
-#2
