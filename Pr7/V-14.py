@@ -8,7 +8,7 @@ def count_divisors(num):
  return count
 
 def find_numbers_with_max_divisors(M, N):
- """Находит числа из интервала [M, N] с наибольшим количеством делителей."""
+ #Находит числа из интервала [M, N] с наибольшим количеством делителей.
  max_divisors = 0
  max_numbers = []
 
