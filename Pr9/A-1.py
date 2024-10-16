@@ -5,7 +5,9 @@ def f(x,n):
 a = int(input())
 b = int(input())
 print(f(a,b))
+
 print('-'*6)
+
 print('№3')
 def f(n):
     a = n[::-1]
