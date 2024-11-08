@@ -1,6 +1,5 @@
 #1
-n = 3
-m = 2
+n = int(input('Ввдеите размер матрицы: '))
 arr = []
 file = open('data.txt')
 for i in file.readlines():
@@ -11,7 +10,7 @@ for i in arr:
     print(' '.join(list(map(str,i))))
 
 for i in range(n-1):
-    for j in range(m):
+    for j in range(n-1):
         arr[i][j] -=arr[n-1][j]
 print('-'*8)
 for i in arr:
