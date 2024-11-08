@@ -8,7 +8,6 @@ for i in file.readlines():
 arr = [arr]*n
 for i in arr:
     print(' '.join(list(map(str,i))))
-
 for i in range(n-1):
     for j in range(n-1):
         arr[i][j] -=arr[n-1][j]
