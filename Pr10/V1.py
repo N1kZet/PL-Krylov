@@ -1,5 +1,5 @@
 #1
-n = int(input('Ввдеите размер матрицы: '))
+n = 4
 arr = []
 file = open('data.txt')
 for i in file.readlines():
@@ -7,13 +7,25 @@ for i in file.readlines():
     arr.append(n1)
 arr = [arr]*n
 for i in arr:
-    print(' '.join(list(map(str,i))))
-for i in range(n-1):
-    for j in range(n-1):
-        arr[i][j] -=arr[n-1][j]
-print('-'*8)
-for i in arr:
-    print(' '.join(list(map(str,i))))
+    print(*i)
+max_e = -float('inf')
+min_e = +float('inf')
+max_index = [0,0]
+min_index = [0,0]
+for i in range(n):
+    for j in range(n):
+        if arr[i][j]>max_e:
+            max_e=arr[i][j]
+            max_index = ([i,j])
+        if arr[i][j]<min_e:
+            min_e = arr[i][j]
+            min_index = ([i,j])
+
+row1,row2 = max_index[0],max_index[1]
+row3,row4 = min_index[0],min_index[1]
+arr[row1][row2],arr[row3][row4]=arr[row3][row4],arr[row1][row2]
+print(max_e,max_index)
+print(min_e,min_index)
 print('-'*8)
 file_vivod = arr
 print(file_vivod)
