@@ -26,14 +26,14 @@ for i in range(n):
 row1,row2 = max_index[0],max_index[1]
 row3,row4 = min_index[0],min_index[1]
 arr[row1][row2],arr[row3][row4]=arr[row3][row4],arr[row1][row2]
-print(max_e,max_index)
-print(min_e,min_index)
+#print(max_e,max_index)
+#print(min_e,min_index)
 print('-'*8)
 #Добавляем результат в файл file_vivod.txt
 file_vivod = arr
-print(file_vivod)
+#print(file_vivod)
 file_v = open('file_vivod.txt','w')
-print(file_v.write(str(file_vivod)))
+#print(file_v.write(str(file_vivod)))
 file_v.close()
 for i in arr:
     print(*i)
