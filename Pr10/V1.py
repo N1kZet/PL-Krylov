@@ -33,7 +33,7 @@ print('-'*8)
 file_vivod = arr
 #print(file_vivod)
 file_v = open('file_vivod.txt','w')
-#print(file_v.write(str(file_vivod)))
+file_v.write(str(file_vivod))
 file_v.close()
 for i in arr:
     print(*i)
