@@ -6,6 +6,7 @@ root = tk.Tk()
 root.title("Krylov N.R.")
 notebook = ttk.Notebook(root)
 
+window = Tk()
 # Создание  фрейма  "Чекбоксы"
 checkbox_tab = tk.Frame(notebook)
 notebook.add(checkbox_tab, text="Чекбоксы")
@@ -44,13 +45,21 @@ operators = ["+", "-", "*", "/"]
 operator_combobox = ttk.Combobox(calc_tab, values=operators)
 operator_combobox.grid(row=1, column=1)
 
+lbl = Label(window,text='Результат ')
 # Создание  кнопки  "Вычислить"
 def calculate():
   # Получение  значений  из  полей  ввода  и  оператора
-  num1 = float(num1_entry.get())
-  num2 = float(num2_entry.get())
+  num1 = int(num1_entry.get())
+  num2 = int(num2_entry.get())
   operator = operator_combobox.get()
-
+  if operator=='+':
+    return lbl.configure(text=f'Результат: {num1+num2}')
+  if operator=='-':
+    return num1-num2
+  if operator=='*':
+    return num1*num2
+  else:
+    return num1/num2
 calculate_button = tk.Button(calc_tab, text="Вычислить", command=calculate)
 calculate_button.grid(row=2, column=1)
 
