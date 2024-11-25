@@ -96,10 +96,10 @@ def save_file():
     with open(filepath, "w") as file:
       file.write(text)
 
-open_button = ttk.Button(text="Открыть файл", command=open_file)
-open_button.pack(side=LEFT, fill=X, expand=True, padx=10) # Растягивается по ширине
+open_button = ttk.Button(text_editor,text="Открыть файл", command=open_file)
+open_button.pack(side=LEFT, fill=X, expand=True, padx=10,anchor=SW) # Растягивается по ширине
 
-save_button = ttk.Button(text="Сохранить файл", command=save_file)
-save_button.pack(side=RIGHT, fill=X, expand=True, padx=10) # Растягивается по ширине
+save_button = ttk.Button(text_editor,text="Сохранить файл", command=save_file)
+save_button.pack(side=RIGHT, fill=X, expand=True, padx=10,anchor=SE) # Растягивается по ширине
 
 root.mainloop()
