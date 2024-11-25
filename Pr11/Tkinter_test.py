@@ -1,34 +1,15 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk
+from tkinter import filedialog
 
-root = tk.Tk()
-root.title("Krylov N.R.")
+root = tk.Tk()     
 notebook = ttk.Notebook(root)
+text_frame = tk.Frame(notebook)     # Фрейм для текстового поля
 
-window = Tk()
-# Создание  фрейма  "Чекбоксы"
-checkbox_tab = tk.Frame(notebook)
-notebook.add(checkbox_tab, text="Чекбоксы")
-
-# Создание  чекбоксов
-checkbox1 = tk.Checkbutton(checkbox_tab, text="Первый")
-checkbox1.grid(row=0, column=0)
-checkbox2 = tk.Checkbutton(checkbox_tab, text="Второй")
-checkbox2.grid(row=1, column=0)
-checkbox3 = tk.Checkbutton(checkbox_tab, text="Третий")
-checkbox3.grid(row=2, column=0)
-
-# Создание  кнопки  "Выбрать"
-def choose():
-  # Получение  значений  чекбоксов
-  # ...
-    pass
-  # Вывод  сообщения  с  информацией  о  выборе
-  # ...
-
-choose_button = tk.Button(checkbox_tab, text="Выбрать", command=choose)
-choose_button.grid(row=3, column=0)
+root.title("Krylov N.")    
+root.geometry("400x500")
+root.resizable(True, True)
 
 notebook.pack(expand=True, fill="both")
 calc_tab = tk.Frame(notebook)
@@ -41,52 +22,84 @@ num2_entry = tk.Entry(calc_tab, width=10)
 num2_entry.grid(row=0, column=2)
 
 # Создание  выпадающего  списка  операций
-operators = ["+", "-", "*", "/"]
+operators = ["+", "-", "", "/"]
 operator_combobox = ttk.Combobox(calc_tab, values=operators)
 operator_combobox.grid(row=1, column=1)
 
-lbl = Label(window,text='Результат ')
 # Создание  кнопки  "Вычислить"
 def calculate():
-  # Получение  значений  из  полей  ввода  и  оператора
+    # Получение  значений  из  полей  ввода  и  оператора
   num1 = int(num1_entry.get())
   num2 = int(num2_entry.get())
   operator = operator_combobox.get()
   if operator=='+':
-    return lbl.configure(text=f'Результат: {num1+num2}')
+    calculate_button["text"] = f"Результат: {num1 +num2}" 
   if operator=='-':
-    return num1-num2
-  if operator=='*':
-    return num1*num2
-  else:
-    return num1/num2
+    calculate_button["text"] = f"Результат: {num1-num2}"
+  if operator=='':
+    calculate_button["text"] = f"Результат: {num1*num2}"
+  if operator == '/':
+    calculate_button["text"] = f"Результат: {num1/num2}"
 calculate_button = tk.Button(calc_tab, text="Вычислить", command=calculate)
 calculate_button.grid(row=2, column=1)
 
-# Создание  фрейма  "Текст"
-text_tab = tk.Frame(notebook)
-notebook.add(text_tab, text="Текст")
 
-# Создание  поля  ввода  текста
-text_area = tk.Text(text_tab, height=10, width=40)
-text_area.pack()
+checkbox_tab = tk.Frame(notebook)
+notebook.add(checkbox_tab, text="Чекбоксы")
+# Создание  чекбоксов
 
-# Функция  открытия  файла
+def choose():
+  result = "Выбрано: "
+  if enavled1.get() == 1: result = f"{result} Первый"
+  if enavled2.get() == 1: result = f"{result} Второй"
+  if enavled3.get() == 1: result = f"{result} Третий"
+  languages.set(result)
+    
+position = {"padx":4, "pady":4,"expand": True, "anchor":SW}
+ 
+languages = StringVar()
+languages_label = ttk.Label(textvariable=languages)
+languages_label.pack(position)    
+
+
+enavled1 = BooleanVar()
+checkbox1 = ttk.Checkbutton(checkbox_tab, text="Первый",variable=enavled1, command=choose)
+checkbox1.pack(position)
+
+enavled2 = BooleanVar()
+checkbox2 = ttk.Checkbutton(checkbox_tab, text="Второй",variable=enavled2, command=choose)
+checkbox2.pack(position)
+
+enavled3 = BooleanVar()
+checkbox3 = ttk.Checkbutton(checkbox_tab, text="Третий",variable=enavled3, command=choose)
+checkbox3.pack(position)
+
+
+notebook.add(text_frame, text="Текст")
+text_editor = Text(text_frame)
+text_editor.pack(fill=BOTH, expand=True) # Занимает все доступное пространство
+
+# открываем файл в текстовое поле
 def open_file():
-  # Открытие  файла  с  помощью  `filedialog.askopenfilename()`
-  # ...
-    pass
-  # Загрузка  текста  из  файла  в  поле  ввода  текста
-  # ...
+  filepath = filedialog.askopenfilename()
+  if filepath != "":
+    with open(filepath, "r") as file:
+      text = file.read()
+      text_editor.delete("1.0", END)
+      text_editor.insert("1.0", text)
 
-# Создание  меню
-menubar = tk.Menu(text_tab)
-root.config(menu=menubar)
-filemenu = tk.Menu(menubar, tearoff=0)
-menubar.add_cascade(label="Файл", menu=filemenu)
-filemenu.add_command(label="Открыть", command=open_file)
-filemenu.add_separator()
-filemenu.add_command(label="Выход", command=root.quit)
+# сохраняем текст из текстового поля в файл
+def save_file():
+  filepath = filedialog.asksaveasfilename()
+  if filepath != "":
+    text = text_editor.get("1.0", END)
+    with open(filepath, "w") as file:
+      file.write(text)
 
+open_button = ttk.Button(text="Открыть файл", command=open_file)
+open_button.pack(side=LEFT, fill=X, expand=True, padx=10) # Растягивается по ширине
+
+save_button = ttk.Button(text="Сохранить файл", command=save_file)
+save_button.pack(side=RIGHT, fill=X, expand=True, padx=10) # Растягивается по ширине
 
 root.mainloop()
