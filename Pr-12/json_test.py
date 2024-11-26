@@ -1,9 +1,25 @@
 import requests
+import json
 from pprint import pprint
 
-username = "kubernetes"
+username = "ionic-team"
+url = f"https://api.github.com/users/{username}"
+# делаем запрос и возвращаем json
+user_data1 = requests.get(url).json()
 
-url = f'https://api.github.com/users/{username}'
+pprint(user_data1)
+print('-'*25)
+s1 = json.dumps(user_data1)
+user_data = json.loads(s1)
+info = {
+        'company'   : (user_data["company"]   ),
+        'created_at': (user_data["created_at"]), 
+        'email'     : (user_data["email"]     ), 
+        'id'        : (user_data["id"]        ), 
+        'name'      : (user_data["name"]      ), 
+        'url'       : (user_data["url"]       )
+        }
+pprint(info)
 
-user_data = requests.get(url).json()
-pprint(user_data)
+with open('Json.txt', 'w') as file_json:
+  json.dump(info,file_json)
