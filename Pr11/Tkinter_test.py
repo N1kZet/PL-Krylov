@@ -3,11 +3,11 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
 
-root = tk.Tk()     
+root = tk.Tk()
 notebook = ttk.Notebook(root)
 text_frame = tk.Frame(notebook)     # Фрейм для текстового поля
 
-root.title("Krylov N.")    
+root.title("Krylov N.")
 root.geometry("400x500")
 root.resizable(True, True)
 
@@ -22,7 +22,7 @@ num2_entry = tk.Entry(calc_tab, width=10)
 num2_entry.grid(row=0, column=2)
 
 # Создание  выпадающего  списка  операций
-operators = ["+", "-", "", "/"]
+operators = ["+", "-", "*", "/"]
 operator_combobox = ttk.Combobox(calc_tab, values=operators)
 operator_combobox.grid(row=1, column=1)
 
@@ -33,10 +33,10 @@ def calculate():
   num2 = int(num2_entry.get())
   operator = operator_combobox.get()
   if operator=='+':
-    calculate_button["text"] = f"Результат: {num1 +num2}" 
+    calculate_button["text"] = f"Результат: {num1 +num2}"
   if operator=='-':
     calculate_button["text"] = f"Результат: {num1-num2}"
-  if operator=='':
+  if operator=='*':
     calculate_button["text"] = f"Результат: {num1*num2}"
   if operator == '/':
     calculate_button["text"] = f"Результат: {num1/num2}"
@@ -54,12 +54,12 @@ def choose():
   if enavled2.get() == 1: result = f"{result} Второй"
   if enavled3.get() == 1: result = f"{result} Третий"
   languages.set(result)
-    
+
 position = {"padx":4, "pady":4,"expand": True, "anchor":SW}
- 
+
 languages = StringVar()
-languages_label = ttk.Label(textvariable=languages)
-languages_label.pack(position)    
+languages_label = ttk.Label(checkbox_tab,textvariable=languages)
+languages_label.pack(position)
 
 
 enavled1 = BooleanVar()
