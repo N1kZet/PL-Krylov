@@ -2,13 +2,15 @@ import tkinter as tk
 from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
+from tkinter import messagebox
+
 
 root = tk.Tk()
 notebook = ttk.Notebook(root)
 text_frame = tk.Frame(notebook)     # Фрейм для текстового поля
 
 root.title("Krylov N.")
-root.geometry("400x500")
+root.geometry("500x400")
 root.resizable(True, True)
 
 notebook.pack(expand=True, fill="both")
@@ -47,33 +49,25 @@ calculate_button.grid(row=2, column=1)
 checkbox_tab = tk.Frame(notebook)
 notebook.add(checkbox_tab, text="Чекбоксы")
 # Создание  чекбоксов
+def clicked():
+    a = selector.get()
+    if   a == 1:messagebox.showinfo('Ты выбрал', 'Вариант №1')
+    elif a == 2:messagebox.showinfo('Ты выбрал', 'Вариант №2')
+    elif a == 3:messagebox.showinfo('Ты выбрал', 'Вариант №3')
 
-def choose():
-  result = "Выбрано: "
-  if enavled1.get() == 1: result = f"{result} Первый"
-  if enavled2.get() == 1: result = f"{result} Второй"
-  if enavled3.get() == 1: result = f"{result} Третий"
-  languages.set(result)
+selector = IntVar()#область хранения значения для rad_button
 
-position = {"padx":4, "pady":4,"expand": True, "anchor":SW}
+rad_button_1 = Radiobutton(checkbox_tab, text='Вариант №1', value=1, variable=selector)
+rad_button_1.grid(row=1, column=1)
 
-languages = StringVar()
-languages_label = ttk.Label(checkbox_tab,textvariable=languages)
-languages_label.pack(position)
+rad_button_2 = Radiobutton(checkbox_tab, text='Вариант №2', value=2, variable=selector)
+rad_button_2.grid(row=1, column=2)
 
+rad_button_3 = Radiobutton(checkbox_tab, text='Вариант №3', value=3, variable=selector)
+rad_button_3.grid(row=1, column=3)
 
-enavled1 = BooleanVar()
-checkbox1 = ttk.Checkbutton(checkbox_tab, text="Первый",variable=enavled1, command=choose)
-checkbox1.pack(position)
-
-enavled2 = BooleanVar()
-checkbox2 = ttk.Checkbutton(checkbox_tab, text="Второй",variable=enavled2, command=choose)
-checkbox2.pack(position)
-
-enavled3 = BooleanVar()
-checkbox3 = ttk.Checkbutton(checkbox_tab, text="Третий",variable=enavled3, command=choose)
-checkbox3.pack(position)
-
+vibor = Button(checkbox_tab, text='Что я выбрал?', command=clicked)
+vibor.grid(row=1, column=4)
 
 notebook.add(text_frame, text="Текст")
 text_editor = Text(text_frame)
