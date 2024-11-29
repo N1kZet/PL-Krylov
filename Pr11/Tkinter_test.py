@@ -4,13 +4,12 @@ from tkinter import ttk
 from tkinter import filedialog
 from tkinter import messagebox
 
-
 root = tk.Tk()
 notebook = ttk.Notebook(root)
 text_frame = tk.Frame(notebook)     # Фрейм для текстового поля
 
 root.title("Krylov N.")
-root.geometry("500x400")
+root.geometry("400x500")
 root.resizable(True, True)
 
 notebook.pack(expand=True, fill="both")
@@ -49,25 +48,37 @@ calculate_button.grid(row=2, column=1)
 checkbox_tab = tk.Frame(notebook)
 notebook.add(checkbox_tab, text="Чекбоксы")
 # Создание  чекбоксов
-def clicked():
-    a = selector.get()
-    if   a == 1:messagebox.showinfo('Ты выбрал', 'Вариант №1')
-    elif a == 2:messagebox.showinfo('Ты выбрал', 'Вариант №2')
-    elif a == 3:messagebox.showinfo('Ты выбрал', 'Вариант №3')
 
-selector = IntVar()#область хранения значения для rad_button
+def choose():
+  a1 = enavled1.get()
+  a2 = enavled2.get()
+  a3 = enavled3.get()
+  if a1==1 and a2==1 and a3==1:messagebox.showinfo('Ты выбрал', 'Вариант №1 и №2 и №3')
+  
+  elif a1==1 and a2==1:messagebox.showinfo('Ты выбрал', 'Вариант №1 и №2')
+  elif a2==1 and a3==1:messagebox.showinfo('Ты выбрал', 'Вариант №2 и №3')
+  elif a1==1 and a3==1:messagebox.showinfo('Ты выбрал', 'Вариант №1 и №3')
+  
+  elif a1 == 1: messagebox.showinfo('Ты выбрал', 'Вариант №1')
+  elif a2 == 1: messagebox.showinfo('Ты выбрал', 'Вариант №2')
+  elif a3 == 1: messagebox.showinfo('Ты выбрал', 'Вариант №3')
+  
+position = {"padx":4, "pady":4,"expand": True, "anchor":SW}
 
-rad_button_1 = Radiobutton(checkbox_tab, text='Вариант №1', value=1, variable=selector)
-rad_button_1.grid(row=1, column=1)
+enavled1 = BooleanVar()
+checkbox1 = ttk.Checkbutton(checkbox_tab, text="Первый",variable=enavled1)
+checkbox1.pack(position)
 
-rad_button_2 = Radiobutton(checkbox_tab, text='Вариант №2', value=2, variable=selector)
-rad_button_2.grid(row=1, column=2)
+enavled2 = BooleanVar()
+checkbox2 = ttk.Checkbutton(checkbox_tab, text="Второй",variable=enavled2)
+checkbox2.pack(position)
 
-rad_button_3 = Radiobutton(checkbox_tab, text='Вариант №3', value=3, variable=selector)
-rad_button_3.grid(row=1, column=3)
+enavled3 = BooleanVar()
+checkbox3 = ttk.Checkbutton(checkbox_tab, text="Третий",variable=enavled3)
+checkbox3.pack(position)
 
-vibor = Button(checkbox_tab, text='Что я выбрал?', command=clicked)
-vibor.grid(row=1, column=4)
+btn_check = Button(checkbox_tab, text='Что я выбрал?', command=choose)
+btn_check.pack(position)
 
 notebook.add(text_frame, text="Текст")
 text_editor = Text(text_frame)
@@ -91,9 +102,9 @@ def save_file():
       file.write(text)
 
 open_button = ttk.Button(text_editor,text="Открыть файл", command=open_file)
-open_button.pack(side=LEFT, fill=X, expand=True, padx=10,anchor=SW) # Растягивается по ширине
+open_button.pack(side=LEFT, fill=X, expand=True, padx=10) # Растягивается по ширине
 
 save_button = ttk.Button(text_editor,text="Сохранить файл", command=save_file)
-save_button.pack(side=RIGHT, fill=X, expand=True, padx=10,anchor=SE) # Растягивается по ширине
+save_button.pack(side=RIGHT, fill=X, expand=True, padx=10) # Растягивается по ширине
 
 root.mainloop()
