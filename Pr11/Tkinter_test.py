@@ -34,16 +34,16 @@ def calculate():
   num2 = int(num2_entry.get())
   operator = operator_combobox.get()
   if operator=='+':
-    calculate_button["text"] = f"Результат: {num1 +num2}"
+    calculate_button["text"] = f"Результат: {num1 +num2}" 
   if operator=='-':
     calculate_button["text"] = f"Результат: {num1-num2}"
-  if operator=='*':
+  if operator=='':
     calculate_button["text"] = f"Результат: {num1*num2}"
   if operator == '/':
-    calculate_button["text"] = f"Результат: {num1/num2}"
-calculate_button = tk.Button(calc_tab, text="Вычислить", command=calculate)
-calculate_button.grid(row=2, column=1)
-
+    if num2 == 0:
+        calculate_button["text"] = f"На ноль делить нельзя!"
+    else:
+        calculate_button["text"] = f"Результат: {num1/num2}"
 
 checkbox_tab = tk.Frame(notebook)
 notebook.add(checkbox_tab, text="Чекбоксы")
