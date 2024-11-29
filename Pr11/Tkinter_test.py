@@ -17,9 +17,9 @@ calc_tab = tk.Frame(notebook)
 notebook.add(calc_tab, text="Калькулятор")
 
 # Создание  полей  ввода
-num1_entry = tk.Entry(calc_tab, width=10)
+num1_entry = tk.Entry(calc_tab, width=20)
 num1_entry.grid(row=0, column=0)
-num2_entry = tk.Entry(calc_tab, width=10)
+num2_entry = tk.Entry(calc_tab, width=20)
 num2_entry.grid(row=0, column=2)
 
 # Создание  выпадающего  списка  операций
@@ -63,6 +63,7 @@ def choose():
   elif a2 == 1: messagebox.showinfo('Ты выбрал', 'Вариант №2')
   elif a3 == 1: messagebox.showinfo('Ты выбрал', 'Вариант №3')
   
+
 position = {"padx":4, "pady":4,"expand": True, "anchor":SW}
 
 enavled1 = BooleanVar()
@@ -102,9 +103,9 @@ def save_file():
       file.write(text)
 
 open_button = ttk.Button(text_editor,text="Открыть файл", command=open_file)
-open_button.pack(side=LEFT, fill=X, expand=True, padx=10) # Растягивается по ширине
+open_button.pack(side=LEFT, fill=X, expand=True, padx=10, anchor=SW) # Растягивается по ширине
 
 save_button = ttk.Button(text_editor,text="Сохранить файл", command=save_file)
-save_button.pack(side=RIGHT, fill=X, expand=True, padx=10) # Растягивается по ширине
+save_button.pack(side=RIGHT, fill=X, expand=True, padx=10,anchor=SE) # Растягивается по ширине
 
 root.mainloop()
