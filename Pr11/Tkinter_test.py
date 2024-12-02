@@ -9,8 +9,8 @@ notebook = ttk.Notebook(root)
 text_frame = tk.Frame(notebook)     # Фрейм для текстового поля
 
 root.title("Krylov N.")
-root.geometry("400x500")
-root.resizable(True, True)
+root.geometry("500x400")
+root.resizable(False, False)
 
 notebook.pack(expand=True, fill="both")
 calc_tab = tk.Frame(notebook)
@@ -34,16 +34,16 @@ def calculate():
   num2 = int(num2_entry.get())
   operator = operator_combobox.get()
   if operator=='+':
-    calculate_button["text"] = f"Результат: {num1 +num2}" 
+    calculate_button["text"] = f"Результат: {num1 +num2}"
   if operator=='-':
     calculate_button["text"] = f"Результат: {num1-num2}"
-  if operator=='':
+  if operator=='*':
     calculate_button["text"] = f"Результат: {num1*num2}"
   if operator == '/':
-    if num2 == 0:
-        calculate_button["text"] = f"На ноль делить нельзя!"
-    else:
-        calculate_button["text"] = f"Результат: {num1/num2}"
+    calculate_button["text"] = f"Результат: {num1/num2}"
+calculate_button = tk.Button(calc_tab, text="Вычислить", command=calculate)
+calculate_button.grid(row=2, column=1)
+
 
 checkbox_tab = tk.Frame(notebook)
 notebook.add(checkbox_tab, text="Чекбоксы")
@@ -54,15 +54,15 @@ def choose():
   a2 = enavled2.get()
   a3 = enavled3.get()
   if a1==1 and a2==1 and a3==1:messagebox.showinfo('Ты выбрал', 'Вариант №1 и №2 и №3')
-  
+
   elif a1==1 and a2==1:messagebox.showinfo('Ты выбрал', 'Вариант №1 и №2')
   elif a2==1 and a3==1:messagebox.showinfo('Ты выбрал', 'Вариант №2 и №3')
   elif a1==1 and a3==1:messagebox.showinfo('Ты выбрал', 'Вариант №1 и №3')
-  
+
   elif a1 == 1: messagebox.showinfo('Ты выбрал', 'Вариант №1')
   elif a2 == 1: messagebox.showinfo('Ты выбрал', 'Вариант №2')
   elif a3 == 1: messagebox.showinfo('Ты выбрал', 'Вариант №3')
-  
+
 
 position = {"padx":4, "pady":4,"expand": True, "anchor":SW}
 
