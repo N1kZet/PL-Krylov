@@ -13,10 +13,10 @@ for i in a:
 for i in range(n-1):
     for j in range(n):
         a[i][j] -=a[n-1][j]
-
+arr = a
 print('-'*8)
-file_v = open('file_vivod.txt','w')
-file_v.write(str(a))
+file_v = open('/home/n1kzet/PL-Krylov/Pr10/file_vivod.txt','w')
+file_v.write(str(arr))
 file_v.close()
-for i in a:
+for i in arr:
     print(*i)
